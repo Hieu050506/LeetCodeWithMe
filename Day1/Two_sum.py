@@ -1,5 +1,5 @@
-class Solution:
-    def twoSum(self, nums: list[int], target: int) -> list[int]:
+class Solution(object):
+    def twoSum(self, nums, target):
         # Lưu các số đã gặp theo dạng giá trị -> chỉ số
         seen = {}
 

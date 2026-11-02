@@ -73,8 +73,8 @@ Giải thích: Hai phần tử có cùng giá trị `3` nhưng ở hai chỉ s�
 Đoạn code dưới đây có thể nộp trực tiếp trên LeetCode:
 
 ```python
-class Solution:
-    def twoSum(self, nums: list[int], target: int) -> list[int]:
+class Solution(object):
+    def twoSum(self, nums, target):
         # Lưu giá trị -> chỉ số của các số đã gặp
         seen = {}
 
@@ -93,7 +93,7 @@ class Solution:
 
 ## Giải thích code
 
-- `class Solution`: Lớp chứa lời giải theo cấu trúc của LeetCode.
+- `class Solution(object)`: Lớp chứa lời giải theo cấu trúc của LeetCode.
 - `seen = {}`: Tạo dictionary lưu các giá trị và chỉ số đã gặp. Ví dụ `{3: 0}` nghĩa là số `3` ở chỉ số `0`.
 - `enumerate(nums)`: Lấy đồng thời chỉ số `i` và giá trị `x`.
 - `needed = target - x`: Tính số cần tìm.
@@ -129,8 +129,8 @@ Với `nums = [3, 2, 4]` và `target = 6`, ban đầu `seen = {}`:
 Dùng hai vòng lặp để thử từng cặp `i`, `j`, với `j > i`. Nếu tổng bằng `target`, trả về `[i, j]`.
 
 ```python
-class Solution:
-    def twoSum(self, nums: list[int], target: int) -> list[int]:
+class Solution(object):
+    def twoSum(self, nums, target):
         for i in range(len(nums)):
             for j in range(i + 1, len(nums)):
                 if nums[i] + nums[j] == target:
