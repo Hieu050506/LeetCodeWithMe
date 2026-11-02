@@ -70,22 +70,24 @@ Giải thích: Hai phần tử có cùng giá trị `3` nhưng ở hai chỉ s�
 
 ## Code Python
 
-Đoạn code dưới đây có thể nộp trực tiếp trên LeetCode:
+Đoạn code dưới đây dùng đúng mẫu `class Solution(object)` và `def twoSum(self, nums, target):`, đồng nhất với phần lời giải trong [Two_sum.py](Two_sum.py). Khi nộp trên LeetCode, chép phần lớp và hàm này:
 
 ```python
 class Solution(object):
     def twoSum(self, nums, target):
-        # Lưu giá trị -> chỉ số của các số đã gặp
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
         seen = {}
 
         for i, x in enumerate(nums):
-            # Tính số còn thiếu để đạt tổng mục tiêu
             needed = target - x
 
             if needed in seen:
                 return [seen[needed], i]
 
-            # Kiểm tra trước, lưu sau để tránh dùng lại chính phần tử này
             seen[x] = i
 
         return []
@@ -93,14 +95,48 @@ class Solution(object):
 
 ## Giải thích code
 
-- `class Solution(object)`: Lớp chứa lời giải theo cấu trúc của LeetCode.
-- `seen = {}`: Tạo dictionary lưu các giá trị và chỉ số đã gặp. Ví dụ `{3: 0}` nghĩa là số `3` ở chỉ số `0`.
-- `enumerate(nums)`: Lấy đồng thời chỉ số `i` và giá trị `x`.
-- `needed = target - x`: Tính số cần tìm.
-- `if needed in seen`: Kiểm tra số cần tìm đã xuất hiện trước đó hay chưa.
-- `return [seen[needed], i]`: Trả về hai chỉ số tạo thành đáp án.
-- `seen[x] = i`: Ghi nhớ phần tử hiện tại để dùng cho các lượt sau.
-- `return []`: Nhánh dự phòng khi không có lời giải.
+### 1. Khai báo lớp và hàm
+
+```python
+class Solution(object):
+    def twoSum(self, nums, target):
+```
+
+`Solution` là lớp chứa lời giải. Hàm `twoSum` dùng đúng các tham số trong mẫu đề bài:
+
+- `self`: Đại diện cho đối tượng đang gọi hàm. Python tự truyền giá trị này.
+- `nums`: Danh sách số nguyên cần tìm cặp.
+- `target`: Tổng mà hai số phải đạt được.
+
+Ví dụ gọi hàm: `Solution().twoSum([2, 7, 11, 15], 9)`. Bạn chỉ truyền `nums` và `target`; Python tự xử lý `self`.
+
+Ba dòng `:type nums: List[int]`, `:type target: int` và `:rtype: List[int]` trong docstring mô tả kiểu đầu vào và đầu ra. Chúng cho biết hàm nhận một danh sách số nguyên, một số nguyên và trả về danh sách chỉ số.
+
+### 2. Tạo nơi lưu các số đã gặp
+
+`seen = {}` tạo một dictionary rỗng, lưu theo dạng `giá trị: chỉ số`. Ví dụ `{2: 0}` nghĩa là đã gặp số `2` tại chỉ số `0`.
+
+### 3. Duyệt từng phần tử
+
+`for i, x in enumerate(nums):` lấy đồng thời chỉ số `i` và giá trị `x`. Với `[2, 7, 11, 15]`, lượt đầu có `i = 0`, `x = 2`.
+
+### 4. Tính số còn thiếu
+
+`needed = target - x` tính số cần ghép với `x`. Nếu `target = 9` và `x = 7` thì `needed = 2`.
+
+### 5. Kiểm tra và trả về đáp án
+
+`if needed in seen:` kiểm tra số cần tìm đã xuất hiện trước đó hay chưa. Nếu đã có, `return [seen[needed], i]` trả về chỉ số đã lưu cùng chỉ số hiện tại.
+
+Ví dụ đang xét số `7` ở chỉ số `1`, dictionary đã có `{2: 0}`. Vì `2 + 7 = 9`, hàm trả về `[0, 1]`.
+
+### 6. Lưu phần tử hiện tại
+
+Nếu chưa tìm được cặp, `seen[x] = i` ghi nhớ phần tử hiện tại cho các lượt sau. Phải kiểm tra trước rồi mới lưu để tránh lấy cùng một phần tử hai lần.
+
+### 7. Trường hợp không có cặp phù hợp
+
+`return []` là nhánh dự phòng sau vòng lặp. Theo giả thiết bài toán luôn có một đáp án, hàm sẽ trả về cặp chỉ số ngay trong vòng lặp.
 
 ## Ví dụ chạy từng bước
 
@@ -143,6 +179,19 @@ class Solution(object):
 - Cách này chưa đáp ứng yêu cầu mở rộng.
 
 ## Cách chạy trên máy
+
+File `Two_sum.py` có phần chạy thử ở cuối, nằm ngoài lớp `Solution`:
+
+```python
+if __name__ == "__main__":
+    solution = Solution()
+
+    print(solution.twoSum([2, 7, 11, 15], 9))
+    print(solution.twoSum([3, 2, 4], 6))
+    print(solution.twoSum([3, 3], 6))
+```
+
+`if __name__ == "__main__":` giúp các ví dụ chỉ chạy khi thực thi file trực tiếp. Khi nộp trên LeetCode, chỉ cần chép phần `class Solution(object)` và hàm `twoSum`.
 
 Từ thư mục `LeetCodeWithMe`, chạy:
 
