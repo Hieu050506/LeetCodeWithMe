@@ -82,7 +82,7 @@ Vì hàng đơn vị đứng đầu, ta có thể cộng ngay từ nút đầu t
 
 ## Code Python
 
-Đoạn code sau dùng mẫu `class Solution(object)` và có thể chép vào phần lời giải trên LeetCode. LeetCode cung cấp sẵn lớp `ListNode`; file [Add_two_numbers.py](Add_two_numbers.py) có thêm định nghĩa lớp này để chạy trên máy.
+File [Add_two_numbers.py](Add_two_numbers.py) chỉ chứa `class Solution(object)` và hàm `addTwoNumbers`, đồng nhất với đoạn code dưới đây. Bạn có thể chép toàn bộ nội dung file này vào LeetCode. Hệ thống cung cấp sẵn `ListNode` để tạo các nút kết quả.
 
 ```python
 class Solution(object):
@@ -181,10 +181,10 @@ Gọi `m` và `n` là số nút của hai danh sách:
 
 ## Cách chạy trên máy
 
-Từ thư mục `LeetCodeWithMe`, chạy:
+Từ thư mục `LeetCodeWithMe`, chạy file hỗ trợ:
 
 ```powershell
-py .\Day1\Add_two_numbers.py
+py .\Day1\run_add_two_numbers.py
 ```
 
 Kết quả:
@@ -195,11 +195,10 @@ Kết quả:
 [8, 9, 9, 9, 0, 0, 0, 1]
 ```
 
-File Python có các phần hỗ trợ chạy thử:
+File [run_add_two_numbers.py](run_add_two_numbers.py) định nghĩa `ListNode`, tạo dữ liệu đầu vào và in kết quả. File này dùng để chạy thử trên máy. File [Add_two_numbers.py](Add_two_numbers.py) chứa lời giải để nộp.
 
-- `ListNode`: Định nghĩa một nút liên kết.
-- `build_linked_list`: Chuyển danh sách Python thành danh sách liên kết.
-- `linked_list_to_list`: Đọc các nút thành danh sách Python để in ra màn hình.
-- `if __name__ == "__main__":`: Chạy ba ví dụ khi thực thi file trực tiếp.
+## Lỗi kiểu trả về ListNode khi nộp
 
-Khi nộp trên LeetCode, chỉ cần chép phần `class Solution(object)` cùng hàm `addTwoNumbers` trong mục Code Python.
+Nếu gặp `TypeError: ... is not valid value for the expected return type ListNode`, một nguyên nhân là định nghĩa lại lớp `ListNode` trong code nộp. Nút trả về khi đó có thể thuộc lớp tự tạo thay vì lớp hệ thống đang chờ.
+
+Trong trường hợp này, hãy xóa code cũ trong ô nộp bài, chép nội dung [Add_two_numbers.py](Add_two_numbers.py), rồi chạy lại. Giữ nguyên lớp `ListNode` mà LeetCode cung cấp.

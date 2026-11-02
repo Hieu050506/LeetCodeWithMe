@@ -16,5 +16,5 @@ py .\Day1\Two_sum.py
 Chạy bài Add Two Numbers:
 
 ```powershell
-py .\Day1\Add_two_numbers.py
+py .\Day1\run_add_two_numbers.py
 ```
